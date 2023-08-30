@@ -36,6 +36,7 @@ body {
 	#taggedContent article {
 		position: relative;
 		/*font-size: 0.6em;*/
+		
 		border: 1px solid #E2E8ED;
 		border-radius: 20px;
 		background-color: #FFF;
