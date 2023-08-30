@@ -21,14 +21,14 @@ public class PlaywrightFixture : PlaywrightFixture<Web.Program>
 
 	private readonly Guid _Uniqueid = Guid.NewGuid();
 
-  protected override IHost CreateHost(IHostBuilder builder)
-  {
-    //ServicesExtensions.SocialMediaProviders = new List<IConfigureProvider> { new StartStubSocialMediaProvider() };
-    builder.AddTestConfiguration();
-    builder.UseOnlyStubSocialMediaProvider();
+	protected override IHost CreateHost(IHostBuilder builder)
+	{
+		//ServicesExtensions.SocialMediaProviders = new List<IConfigureProvider> { new StartStubSocialMediaProvider() };
+		builder.AddTestConfiguration();
+		builder.UseOnlyStubSocialMediaProvider();
 		builder.UseOnlyInMemoryService();
-    builder.UseUniqueDb(_Uniqueid);
-    var host = base.CreateHost(builder);
+		builder.UseUniqueDb(_Uniqueid);
+		var host = base.CreateHost(builder);
 
 		return host;
 	}
