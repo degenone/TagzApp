@@ -12,7 +12,7 @@ public class StartMastodon : IConfigureProvider
 	public IServiceCollection RegisterServices(IServiceCollection services, IConfiguration configuration)
 	{
 		IConfigurationSection config;
-
+		// test-comment.
 		try
 		{
 			config = configuration.GetSection(MastodonConfiguration.AppSettingsSection);

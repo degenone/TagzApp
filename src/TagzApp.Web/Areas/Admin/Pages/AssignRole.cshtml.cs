@@ -15,7 +15,7 @@ public class AssignRoleModel : PageModel
 	public List<IdentityRole> Roles { get; private set; }
 
 	private readonly UserManager<IdentityUser> _userManager; // needed to access roles of a user
-	private readonly RoleManager<IdentityRole> _RoleManager;
+	private readonly RoleManager<IdentityRole> _RoleManager; // needed to access all roles
 
 	public AssignRoleModel(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
 	{

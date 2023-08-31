@@ -13,7 +13,7 @@
 
 		resizeAllGridItems: function () {
 			allItems = document.querySelectorAll("article");
-			for (x = 0; x < allItems.length; x++) {
+			for (x = 0; x<allItems.length; x++) {
 				m.resizeGridItem(allItems[x]);
 			}
 		}

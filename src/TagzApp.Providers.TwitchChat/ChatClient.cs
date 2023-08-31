@@ -37,8 +37,8 @@ public class ChatClient : IChatClient
 	internal static readonly Regex reTimestamp = new Regex(@"tmi-sent-ts=(\d+)");
 	internal static readonly Regex reMessageId = new Regex(@"id=([^;]*)");
 
-	internal static Regex reChatMessage;
-	internal static Regex reWhisperMessage;
+	internal static Regex? reChatMessage;
+	internal static Regex? reWhisperMessage;
 
 	public event EventHandler<NewMessageEventArgs> NewMessage;
 

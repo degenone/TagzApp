@@ -226,7 +226,7 @@ span.invisible {
 	grid-template-rows: 10px 10px 14px;
 	grid-column-gap: 10px;
 	grid-row-gap: 10px;
-	padding-bottom: 0.5rem;
+	padding-bottom: .5rem;
 }
 
 	.modal-header .ProfilePicture {

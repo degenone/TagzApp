@@ -3,6 +3,7 @@
 	var connection;
 
 	const taggedContent = document.getElementById("taggedContent");
+	// observer for new messages
 	const observer = new MutationObserver(function (mutationsList, observer) {
 		for (const mutation of mutationsList) {
 			if (mutation.type !== 'childList') continue;
