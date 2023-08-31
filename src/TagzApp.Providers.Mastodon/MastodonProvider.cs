@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using System.Net.Http.Json;
-using System.Text.Json;
 using System.Web;
 
 namespace TagzApp.Providers.Mastodon;
