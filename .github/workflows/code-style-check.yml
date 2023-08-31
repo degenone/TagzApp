@@ -44,6 +44,11 @@ jobs:
         echo "dotnet_diagnostic.IDE0090.severity = error" >> src/.editorconfig # Simplify new expression
         echo "dotnet_diagnostic.IDE0003.severity = error" >> src/.editorconfig # this and Me preferences
         echo "dotnet_diagnostic.IDE0009.severity = error" >> src/.editorconfig # this and Me preferences
+    - name: Setup .NET
+      if: steps.changed_cs.outputs.files != ''
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
     - name: Run dotnet format
       if: steps.changed_cs.outputs.files != ''
       id: dotnet-format
