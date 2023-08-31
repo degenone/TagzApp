@@ -163,6 +163,11 @@ public class ChatClient : IChatClient
 
 	}
 
+	/// <summary>
+	/// whisper a message to a user
+	/// </summary>
+	/// <param name="message">messge to send</param>
+	/// <param name="userName">user name of message recipiant</param>
 	public void WhisperMessage(string message, string userName)
 	{
 
