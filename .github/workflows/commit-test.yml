@@ -18,10 +18,10 @@ jobs:
         run: |
           git fetch --all
           git branch -a
-      - name: compare last commit sha with FritzAndFrieds/TagzApp/ main branch
+      - name: compare last commit sha with FritzAndFriends/TagzApp/ main branch
         if: github.event_name == 'push'
         run: |
-          git remote add upstream https://github.com/FritzAndFrieds/TagzApp/
+          git remote add upstream https://github.com/FritzAndFriends/TagzApp/
           git fetch upstream
           git switch upstream main
           git log -1
