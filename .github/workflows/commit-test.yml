@@ -13,6 +13,8 @@ jobs:
           echo ${{ github.repository }}
           echo ${{ github.actor }}
           echo ${{ github.head_ref || github.ref_name }}
+          echo ${{ github.event.pull_request.head.sha || github.event.head_commit.id }}
+          echo ${{ github.sha }}
       - name: get last commit message
         run: |
           git log -1
