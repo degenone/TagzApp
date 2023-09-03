@@ -32,5 +32,7 @@ jobs:
           git fetch upstream
           git switch feature-auth-tests
           git log -1 --pretty=%B
-      - name: print repo url
-        run: echo ${{ github.repository }}
+      - name: print stuff
+        run: |
+          echo ${{ github.repositoryUrl }}
+          echo ${{ github.head_ref }}
