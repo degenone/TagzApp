@@ -24,7 +24,7 @@ jobs:
           git branch -a
       - name: compare last commit sha with FritzAndFriends/TagzApp main branch
         run: |
-          git remote add upstream git@github.com:FritzAndFriends/TagzApp
+          git remote add upstream https://github.com/FritzAndFriends/TagzApp
           git fetch upstream
           git switch -c upstream-main upstream/main
           git log -1 --pretty=%B
