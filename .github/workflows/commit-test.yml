@@ -6,31 +6,25 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
+          ref: ${{ github.event.head_commit.id }}
           fetch-depth: 0
-      - name: commit test
-        if: github.event_name != 'push'
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit --allow-empty -m "commit test"
-          git push
       - name: get last commit message and sha
         if: github.event_name == 'push'
         run: |
           git rev-parse HEAD
-          git log -1 --pretty=%B
+          git log -1
       - name: fetch all remote branches
         if: github.event_name == 'push'
         run: |
           git fetch --all
           git branch -a
-      - name: compare last commit sha with csharpfritz/TagzApp/ main branch
-        if: github.event_name != 'push'
+      - name: compare last commit sha with FritzAndFrieds/TagzApp/ main branch
+        if: github.event_name == 'push'
         run: |
-          git remote add upstream https://github.com/csharpfritz/TagzApp/
+          git remote add upstream https://github.com/FritzAndFrieds/TagzApp/
           git fetch upstream
-          git switch feature-auth-tests
-          git log -1 --pretty=%B
+          git switch upstream main
+          git log -1
       - name: print stuff
         run: |
           echo ${{ github.repository }}
