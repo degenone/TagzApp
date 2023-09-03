@@ -27,7 +27,7 @@ jobs:
         if: github.event_name == 'pull_request'
         run: |
           git remote add upstream https://github.com/csharpfritz/TagzApp/
-          git fetch upstream origin --depth=1
+          git fetch upstream feature_Instagram --depth=1
           # git switch -c feature_Instagram upstream/main
           git switch feature_Instagram
           echo "$(date)" >> README.md
