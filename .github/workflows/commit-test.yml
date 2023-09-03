@@ -6,8 +6,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          repository: 'csharpfritz/TagzApp'
-          ref: 'main'
           fetch-depth: 0
       - name: commit test
         if: github.event_name != 'push'
