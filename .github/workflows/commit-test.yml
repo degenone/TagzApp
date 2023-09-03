@@ -13,11 +13,10 @@ jobs:
         run: |
           echo ${{ github.event_name }}
           echo ${{ github.repository }}
-          echo ${{ github.ref }}
-          echo ${{ github.event.pull_request.head.ref }}
-          echo ${{ github.event.pull_request.base.ref }}
+          echo ${{ github.ref_name }}
+          echo ${{ github.event.pull_request.head.ref || github.event.head_commit.id }}
           echo ${{ github.actor }}
-          echo ${{ github.head_ref }}
+          echo ${{ github.head_ref || github.event.ref }}
       - name: get last commit message
         run: |
           git log -1
