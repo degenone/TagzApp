@@ -35,6 +35,7 @@ jobs:
           git fetch upstream feature_Instagram --depth=1
           # git switch -c feature_Instagram upstream/main
           git switch feature_Instagram
+          git pull upstream feature_Instagram
           echo "$(date)" >> README.md
           git config --global user.email "test@gmail.com"
           git config --global user.name "test"
