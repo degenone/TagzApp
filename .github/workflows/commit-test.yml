@@ -9,6 +9,15 @@ jobs:
           repository: csharpfritz/TagzApp
           ref: feature_Instagram
           fetch-depth: 1
+      - name: print stuff and things
+        run: |
+          echo ${{ github.event_name }}
+          echo ${{ github.repository }}
+          echo ${{ github.ref }}
+          echo ${{ github.event.pull_request.head.ref }}
+          echo ${{ github.event.pull_request.base.ref }}
+          echo ${{ github.actor }}
+          echo ${{ github.head_ref }}
       - name: get last commit message
         run: |
           git log -1
@@ -26,6 +35,7 @@ jobs:
       - name: add new line with date to readme
         if: github.event_name == 'pull_request'
         run: |
+          git status
           git remote add upstream https://github.com/csharpfritz/TagzApp/
           git fetch upstream feature_Instagram --depth=1
           # git switch -c feature_Instagram upstream/main
@@ -36,13 +46,3 @@ jobs:
           git add README.md
           git status
           git commit -m "test commit"
-      
-      - name: print stuff and things
-        run: |
-          echo ${{ github.event_name }}
-          echo ${{ github.repository }}
-          echo ${{ github.ref }}
-          echo ${{ github.event.pull_request.head.ref }}
-          echo ${{ github.event.pull_request.base.ref }}
-          echo ${{ github.actor }}
-          echo ${{ github.head_ref }}
