@@ -19,7 +19,7 @@ jobs:
         run: git branch -a
       - name: git diff to pushers main branch
         run: |
-          git remote add upstream https://github.com/${{ github.event.pusher }}/TagzApp/
+          git remote add upstream https://github.com/${{ github.event.pusher.username }}/TagzApp/
           git fetch upstream main --depth=1
           git diff --name-only upstream/main origin/main
       - name: add new line with date to readme
