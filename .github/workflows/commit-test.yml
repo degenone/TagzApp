@@ -28,4 +28,4 @@ jobs:
           git fetch upstream
           git switch -c upstream-main upstream/main
           git log -1 --pretty=%B
-          git diff --name-only upstream-main main
+          git diff --name-only upstream-main origin/main
