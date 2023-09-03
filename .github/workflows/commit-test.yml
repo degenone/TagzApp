@@ -6,7 +6,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.head.sha || github.event.head_commit.id }}
           fetch-depth: 1
       - name: print stuff and things
         run: |
@@ -15,7 +14,8 @@ jobs:
           echo ${{ github.actor }}
           echo ${{ github.head_ref }}
           echo ${{ github.ref_name }}
-          echo ${{ github.event.pull_request.head.sha || github.event.head_commit.id }}
+          echo ${{ github.event.pull_request.head.sha }}
+          echo ${{ github.event.head_commit.id }}
       - name: get last commit message
         run: |
           git log -1
