@@ -28,11 +28,13 @@ jobs:
       - name: compare last commit sha with CZEMacLeod/TagzApp main branch
         if: github.event_name == 'push'
         run: |
-          git remote add upstream https://github.com/CZEMacLeod/TagzApp
+          git remote add upstream git://github.com/CZEMacLeod/TagzApp
           git fetch upstream
           git switch feature-auth-tests
           git log -1 --pretty=%B
       - name: print stuff
         run: |
           echo ${{ github.repositoryUrl }}
-          echo ${{ github.head_ref }}
+          echo ${{ github.event.repository.url }}
+          # branch name
+          echo ${{ github.ref }}
