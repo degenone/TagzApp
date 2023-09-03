@@ -17,6 +17,7 @@ jobs:
         run: |
           git fetch origin
           git branch -a
+          git log origin/main -1
       - name: fetch all remote branches
         if: github.event_name == 'push'
         run: |
