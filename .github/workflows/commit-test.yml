@@ -23,7 +23,7 @@ jobs:
         run: |
           git remote add upstream https://github.com/FritzAndFriends/TagzApp/
           git fetch upstream
-          git switch upstream main
+          git switch upstream/main
           git log -1
       - name: print stuff
         run: |
