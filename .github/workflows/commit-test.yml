@@ -6,17 +6,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          repository: csharpfritz/TagzApp
-          ref: feature_Instagram
           fetch-depth: 1
       - name: print stuff and things
         run: |
           echo ${{ github.event_name }}
           echo ${{ github.repository }}
-          echo ${{ github.ref_name }}
-          echo ${{ github.event.pull_request.head.ref || github.event.head_commit.id }}
           echo ${{ github.actor }}
-          echo ${{ github.head_ref || github.event.ref }}
+          echo ${{ github.head_ref || github.ref_name }}
       - name: get last commit message
         run: |
           git log -1
