@@ -6,30 +6,31 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0
-      - name: get last commit message and sha
-        if: github.event_name == 'push'
+          repository: csharpfritz/TagzApp
+          ref: feature_Instagram
+          fetch-depth: 1
+      - name: get last commit message
         run: |
-          git rev-parse HEAD
           git log -1
+          git branch -a
       - name: fetch origin
-        if: github.event_name == 'push'
+        run: git fetch origin
+      - name: list all branches
+        run: git branch -a
+      - name: git diff to pushers main branch
         run: |
-          git fetch origin
-          git branch -a
-          git log origin/main -1
-      - name: fetch all remote branches
-        if: github.event_name == 'push'
+          git remote add upstream https://github.com/${{ github.event.pusher }}/TagzApp/
+          git fetch upstream main --depth=1
+          git diff --name-only upstream/main origin/main
+      - name: add new line with date to readme
         run: |
-          git fetch --all
-          git branch -a
-      - name: compare last commit sha with FritzAndFriends/TagzApp/ main branch
-        if: github.event_name == 'push'
-        run: |
-          git remote add upstream https://github.com/FritzAndFriends/TagzApp/
-          git fetch upstream
-          git switch -c upstream-main upstream/main
-          git log -1
+          echo "$(date)" >> README.md
+          git config --global user.email "test@gmail.com"
+          git config --global user.name "test"
+          git add README.md
+          git status
+          git commit -m "test commit"
+      
       - name: print stuff
         run: |
           echo ${{ github.repository }}
