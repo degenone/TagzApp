@@ -6,7 +6,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: '${{ github.base_ref }}'
+          repository: 'csharpfritz/TagzApp'
+          ref: 'main'
           fetch-depth: 0
       - name: commit test
         if: github.event_name != 'push'
@@ -25,16 +26,14 @@ jobs:
         run: |
           git fetch --all
           git branch -a
-      - name: compare last commit sha with CZEMacLeod/TagzApp main branch
+      - name: compare last commit sha with csharpfritz/TagzApp/ main branch
         if: github.event_name != 'push'
         run: |
-          git remote add upstream git://github.com/CZEMacLeod/TagzApp
+          git remote add upstream https://github.com/csharpfritz/TagzApp/
           git fetch upstream
           git switch feature-auth-tests
           git log -1 --pretty=%B
       - name: print stuff
         run: |
-          echo ${{ github.repositoryUrl }}
-          echo ${{ github.event.repository.url }}
-          # branch name
+          echo ${{ github.repository }}
           echo ${{ github.ref }}
