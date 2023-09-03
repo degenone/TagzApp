@@ -6,6 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
+          ref: '${{ github.base_ref }}'
           fetch-depth: 0
       - name: commit test
         if: github.event_name != 'push'
@@ -15,16 +16,19 @@ jobs:
           git commit --allow-empty -m "commit test"
           git push
       - name: get last commit message and sha
+        if: github.event_name != 'push'
         run: |
           git rev-parse HEAD
           git log -1 --pretty=%B
       - name: fetch all remote branches
+        if: github.event_name != 'push'
         run: |
           git fetch --all
           git branch -a
-      - name: compare last commit sha with FritzAndFriends/TagzApp main branch
+      - name: compare last commit sha with CZEMacLeod/TagzApp main branch
+        if: github.event_name != 'push'
         run: |
-          git remote add upstream https://github.com/FritzAndFriends/TagzApp
+          git remote add upstream https://github.com/CZEMacLeod/TagzApp
           git fetch upstream
           git switch -c upstream-main upstream/main
           git log -1 --pretty=%B
