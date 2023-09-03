@@ -37,7 +37,7 @@ jobs:
           git status
           git commit -m "test commit"
       
-      - name: print stuff
+      - name: print stuff and things
         run: |
           echo ${{ github.event_name }}
           echo ${{ github.repository }}
