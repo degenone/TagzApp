@@ -1,5 +1,5 @@
 name: commit test
-on: push
+on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,17 +13,23 @@ jobs:
         run: |
           git log -1
           git branch -a
-      - name: fetch origin
-        run: git fetch origin
+      - name: fetch all branches
+        run: git fetch --all
       - name: list all branches
         run: git branch -a
-      - name: git diff to my main branch
+      - name: git diff to actor main branch
+        if: ${{ github.repository_owner != github.actor }}
         run: |
-          git remote add upstream https://github.com/degenone/TagzApp/
+          git remote add upstream https://github.com/${{ github.actor }}/TagzApp/
           git fetch upstream main --depth=1
           git diff --name-only upstream/main origin/main
       - name: add new line with date to readme
+        if: github.event_name == 'pull_request'
         run: |
+          git remote add upstream https://github.com/csharpfritz/TagzApp/
+          git fetch upstream --depth=1 --all
+          # git switch -c feature_Instagram upstream/main
+          git switch feature_Instagram
           echo "$(date)" >> README.md
           git config --global user.email "test@gmail.com"
           git config --global user.name "test"
@@ -33,5 +39,10 @@ jobs:
       
       - name: print stuff
         run: |
+          echo ${{ github.event_name }}
           echo ${{ github.repository }}
           echo ${{ github.ref }}
+          echo ${{ github.event.pull_request.head.ref }}
+          echo ${{ github.event.pull_request.base.ref }}
+          echo ${{ github.actor }}
+          echo ${{ github.head_ref }}
