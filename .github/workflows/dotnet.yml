@@ -5,14 +5,14 @@ name: Build and Test .NET projects
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "fo_main" ]
     paths: [ "src/**" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "fo_main" ]
     types: [opened, synchronize, reopened, closed]
     paths: [ "src/**" ]
   workflow_dispatch:
-    branches: [	"main" ]
+    branches: [	"fo_main" ]
 
 
 jobs:
@@ -106,10 +106,10 @@ jobs:
       - name: Get git diff
         id: diff
         run: |
-          git fetch origin main
+          git fetch origin fo_main
           {
             echo 'files<<EOF'
-            git diff origin/main --name-only --diff-filter=d -- "*.css" "*.js" "*.cs"
+            git diff origin/fo_main --name-only --diff-filter=d -- "*.css" "*.js" "*.cs"
             echo EOF
           } >> "$GITHUB_OUTPUT"
 
