@@ -179,7 +179,7 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add *.cs *.js *.css
-          echo "$(git status)"
           git commit -m "Applying formatting changes through GitHub Actions"
           git pull origin HEAD:${{ github.head_ref }}
+          echo "$(git status)"
           git push origin HEAD:${{ github.head_ref }}
