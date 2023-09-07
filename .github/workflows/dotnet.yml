@@ -5,14 +5,14 @@ name: Build and Test .NET projects
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main_fix" ]
     paths: [ "src/**" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main_fix" ]
     types: [opened, synchronize, reopened, closed]
     paths: [ "src/**" ]
   workflow_dispatch:
-    branches: [	"main" ]
+    branches: [	"main_fix" ]
 
 
 jobs:
