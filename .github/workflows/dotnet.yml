@@ -104,18 +104,6 @@ jobs:
       contents: write
 
     steps:
-      - name: Check job permissions
-        id: permissions
-        run: |
-          response=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs/code-formatting/permissions")
-          if [[ $(echo "$response" | jq -r '.permissions.contents') == "write" ]]; then
-            echo "write=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "write=false" >> "$GITHUB_OUTPUT"
-            echo "Job does not have write permissions"
-            exit 1
-          fi
       - uses: actions/checkout@v3
         with:
           repository: ${{ github.actor }}/TagzApp
@@ -155,7 +143,7 @@ jobs:
         with:
           dotnet-version: 7.0.x
       - name: Run dotnet format
-        if: steps.permissions.outputs.write == 'true' && steps.changed_cs.outputs.files != ''
+        if: steps.changed_cs.outputs.files != ''
         id: dotnet-format
         run: |
           echo "Running dotnet format on: ${{ steps.changed_cs.outputs.files }}"
@@ -180,7 +168,7 @@ jobs:
         with:
           node-version: lts/*
       - name: Run prettier
-        if: steps.permissions.outputs.write == 'true' && steps.changed_js_css.outputs.files != ''
+        if: steps.changed_js_css.outputs.files != ''
         id: prettier
         run: |
           echo "Running prettier on: ${{ steps.changed_js_css.outputs.files }}"
@@ -192,6 +180,17 @@ jobs:
           echo "Number of files Prettier formatted: $count"
           echo "count=$count" >> "$GITHUB_OUTPUT"
 
+      - name: Check job permissions
+        id: permissions
+        run: |
+          response=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs/code-formatting/permissions")
+          if [[ $(echo "$response" | jq -r '.permissions.contents') == "write" ]]; then
+            echo "write=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "write=false" >> "$GITHUB_OUTPUT"
+            echo "Job does not have write permissions"
+          fi
       - name: Commit if changes
         if: steps.permissions.outputs.write == 'true' && (steps.prettier.outputs.count > 0 || steps.dotnet-format.outputs.count > 0)
         run: |
