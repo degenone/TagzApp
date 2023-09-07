@@ -100,18 +100,23 @@ jobs:
   code-formatting:
     if: github.event_name == 'workflow_dispatch' || github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@v3
         with:
+          repository: ${{ github.actor }}/TagzApp
+          ref: ${{ github.ref_name }}
           fetch-depth: 0
       - name: Get git diff
         id: diff
         run: |
-          git fetch origin main
+          git remote add upstream https://github.com/FritzAndFriends/TagzApp.git
+          git fetch upstream main
           {
             echo 'files<<EOF'
-            git diff origin/main --name-only --diff-filter=d -- "*.css" "*.js" "*.cs"
+            git diff upstream/main --name-only --diff-filter=d -- "*.css" "*.js" "*.cs"
             echo EOF
           } >> "$GITHUB_OUTPUT"
 
@@ -183,4 +188,4 @@ jobs:
           git add *.cs *.js *.css
           echo "$(git status)"
           git commit -m "Applying formatting changes through GitHub Actions"
-          git push origin HEAD:${{ github.head_ref }}
+          git push          
