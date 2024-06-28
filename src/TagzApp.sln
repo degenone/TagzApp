@@ -73,7 +73,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagzApp.MigrationService", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagzApp.AppHostExtensions", "TagzApp.AppHostExtensions\TagzApp.AppHostExtensions.csproj", "{8A628B08-E52F-423D-BE84-FDB3F8A09DCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagzApp.WebAspireTest", "TagzApp.WebAspireTest\TagzApp.WebAspireTest.csproj", "{D6E66705-7973-4075-849D-5ED86DAFB29A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagzApp.WebAspireTest", "TagzApp.WebAspireTest\TagzApp.WebAspireTest.csproj", "{D6E66705-7973-4075-849D-5ED86DAFB29A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -215,6 +215,7 @@ Global
 		{290F15DE-B3E8-4FCA-ABF5-C223D611BA6B} = {6B73C62C-6CC8-4C85-A24F-FA84489B3137}
 		{F1F4F081-22D3-4F8A-AD34-8BD270848F8E} = {370455D5-6EA6-44C1-B315-B621F7B6A954}
 		{8A628B08-E52F-423D-BE84-FDB3F8A09DCF} = {6B73C62C-6CC8-4C85-A24F-FA84489B3137}
+		{D6E66705-7973-4075-849D-5ED86DAFB29A} = {12511540-4D0B-451D-81B0-2FB2C8C5975F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F2AD77A5-5B2D-41FC-AD37-8EF8A4E54410}

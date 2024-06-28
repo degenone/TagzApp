@@ -19,8 +19,12 @@ public static class DatabaseConfig
 		var dbPassword = builder.AddParameter("dbPassword", false);
 
 		var dbServer = builder.AddPostgres("dbServer", password: dbPassword)
-			.WithPgAdmin()
-			.WithDataVolume("tagzapp-dev");
+			.WithPgAdmin();
+		bool testMode = Environment.GetEnvironmentVariable("RUNNING_MODE")?.ToLower() == "test";
+		if (!testMode)
+		{
+			dbServer.WithDataVolume("tagzapp-dev");
+		}
 
 		db = dbServer.AddDatabase("tagzappdb");
 
